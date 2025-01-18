@@ -41,7 +41,7 @@ export function serverAuth() {
                                 </head>
                                 <body style="margin: 0; padding: 20px; background-color: #f9fafb; font-family: Arial, sans-serif;">
                                     <div style="max-width: 600px; margin: 0 auto; background-color: white; border-radius: 8px; padding: 40px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                                        <img src="https://otopilot.shaoula.com/logo-dark.svg" alt="OtoPilot Logo" style="display: block; margin: 0 auto 30px; max-width: 200px;">
+                                        <img src="https://otopilot.shaoula.com/logo-dark.png" alt="OtoPilot Logo" style="display: block; margin: 0 auto 30px; max-width: 200px;">
                                         <h1 style="color: #111827; font-size: 24px; margin-bottom: 20px; text-align: center;">Doğrulama Kodunuz</h1>
                                         <p style="color: #4b5563; font-size: 16px; line-height: 24px; margin-bottom: 30px; text-align: center;">
                                             OtoPilot'a giriş yapmak için aşağıdaki doğrulama kodunu kullanın:
