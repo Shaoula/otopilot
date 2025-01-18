@@ -6,7 +6,8 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/eslint',
     '@nuxthub/core',
-    'nuxt-resend'
+    'nuxt-resend',
+    '@vueuse/nuxt',
   ],
 
   runtimeConfig: {
