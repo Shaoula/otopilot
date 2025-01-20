@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     'nuxt-resend',
     '@vueuse/nuxt',
     '@nuxt/image',
+    '@pinia/nuxt',
+    '@pinia/colada-nuxt',
+    'pinia-plugin-persistedstate/nuxt',
   ],
 
   runtimeConfig: {

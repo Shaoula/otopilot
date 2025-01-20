@@ -1,20 +1,47 @@
 <script setup lang="ts">
-const { loggedIn } = useAuth()
-const isOnline = useOnline()
+const navigation = [
+  {
+    title: 'Dashboard',
+    icon: 'i-lucide-layout-dashboard',
+    to: '/'
+  },
+  {
+    title: 'Vehicles',
+    icon: 'i-lucide-car',
+    to: '/vehicles'
+  },
+  {
+    title: 'Analytics',
+    icon: 'i-lucide-bar-chart',
+    to: '/analytics'
+  },
+  {
+    title: 'API Management',
+    icon: 'i-lucide-settings',
+    to: '/api-management'
+  },
+  {
+    title: 'Settings',
+    icon: 'i-lucide-settings',
+    to: '/settings'
+  }
+]
+
+const isOpen = ref(true)
 </script>
 
 <template>
-  <div class="h-screen w-screen flex flex-col">
-    <div
-      v-if="!isOnline"
-      class="bg-red-500 p-2 text-center text-white"
-    >
-      {{ $t('offline') }}
-    </div>
-    <NavHeader />
-    <div class="h-full max-h-full flex flex-1 gap-4 overflow-x-hidden overflow-y-auto">
-      <NavSidebar v-if="loggedIn" class="shrink-0" />
-      <main class="h-full w-full overflow-x-hidden overflow-y-auto p-4 pb-12 transition transition-width">
+  <div class="h-screen flex">
+    <!-- Sidebar -->
+    <NavSidebar />
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden">
+      <!-- Top Navigation -->
+      <NavHeader />
+
+      <!-- Page Content -->
+      <main class="flex-1 overflow-auto p-6">
         <slot />
       </main>
     </div>
