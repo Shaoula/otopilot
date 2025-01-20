@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxthub/core',
     'nuxt-resend',
     '@vueuse/nuxt',
+    '@nuxt/image',
   ],
 
   runtimeConfig: {
