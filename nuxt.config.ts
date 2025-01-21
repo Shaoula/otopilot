@@ -1,3 +1,5 @@
+import { cdnUrl } from "./app/constants";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -29,12 +31,6 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  hub: {
-    database: true,
-    kv: true,
-    blob: true,
-  },
-
   app: {
     head: {
       htmlAttrs: { lang: 'tr' },
@@ -52,6 +48,25 @@ export default defineNuxtConfig({
         { name: 'theme-color', media: '(prefers-color-scheme: dark)', content: '#222222' },
       ],
     },
+  },
+
+  hub: {
+    database: true,
+    kv: true,
+    blob: true,
+  },
+
+  image: {
+    domains: ['otopilot.shaoula.com'],
+    provider: 'cloudflare',
+    alias: {
+      cdn: cdnUrl
+    },
+    cloudflare: {
+      baseUrl: cdnUrl
+    },
+    quality: 80,
+    formats: ['webp'],
   },
 
   compatibilityDate: '2024-11-27'
