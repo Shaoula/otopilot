@@ -1,12 +1,13 @@
 import { defu } from 'defu'
 import { createAuthClient } from 'better-auth/client'
-import { emailOTPClient } from "better-auth/client/plugins"
+import { emailOTPClient, inferAdditionalFields } from "better-auth/client/plugins"
 import type {
     InferSessionFromClient,
     InferUserFromClient,
     ClientOptions,
 } from 'better-auth/client'
 import type { RouteLocationRaw } from 'vue-router'
+import type { AuthConfig } from '~~/server/utils/auth'
 
 interface RuntimeAuthConfig {
     redirectUserTo: RouteLocationRaw | string
@@ -19,7 +20,7 @@ export function useAuth() {
 
     const client = createAuthClient({
         baseURL: url.origin,
-        plugins: [emailOTPClient()],
+        plugins: [emailOTPClient(), inferAdditionalFields<AuthConfig>()],
         fetchOptions: {
             headers,
         },

@@ -1,7 +1,7 @@
+import type { H3Event, EventHandlerRequest } from 'h3'
 import { betterAuth } from 'better-auth'
-import { emailOTP } from "better-auth/plugins"
+import { admin, emailOTP } from "better-auth/plugins"
 import { D1Dialect } from '@atinux/kysely-d1'
-import { admin } from 'better-auth/plugins'
 
 let _auth: ReturnType<typeof betterAuth>
 export function serverAuth() {
@@ -9,10 +9,20 @@ export function serverAuth() {
         _auth = betterAuth({
             database: {
                 dialect: new D1Dialect({
-                    // @ts-ignore
+                    // @ts-expect-error better-auth is not compatible 
                     database: hubDatabase(),
                 }),
                 type: 'sqlite',
+            },
+            user: {
+                additionalFields: {
+                    role: {
+                        type: 'string',
+                        defaultValue: 'user',
+                        enum: ['user', 'admin', 'superadmin'],
+                        input: false,
+                    },
+                },
             },
             secondaryStorage: {
                 get: key => hubKV().getItemRaw(`_auth:${key}`),
@@ -23,12 +33,15 @@ export function serverAuth() {
             },
             baseURL: getBaseURL(),
             plugins: [
-                admin(),
+                admin({
+                    adminRole: ['admin', 'superadmin'],
+                }),
+
                 emailOTP({
-                    // disableSignUp: true,
+                    disableSignUp: true,
                     async sendVerificationOTP({ email, otp }) {
-                        await useResend().emails.send({
-                            from: 'OtoPilot <noreply@otopilot.shaoula.com>',
+                        const res = await useResend().emails.send({
+                            from: 'OtoPilot <noreply@mailer.shaoula.com>',
                             to: email,
                             subject: "OtoPilot'a giriş yapmak için doğrulama kodunuz",
                             html: `
@@ -59,6 +72,7 @@ export function serverAuth() {
                             </html>
                         `,
                         })
+                        console.log(res)
                     }
                 })],
         })
@@ -72,7 +86,20 @@ function getBaseURL() {
         try {
             baseURL = getRequestURL(useEvent()).origin
         }
-        catch (e) { }
+        catch (e) {
+            console.error('Error getting base URL', e)
+        }
     }
     return baseURL
 }
+
+export async function getAuthSession(event: H3Event<EventHandlerRequest>) {
+    const session = await serverAuth().api.getSession({
+        headers: event.headers,
+    })
+
+    return session
+}
+
+// Export auth config type
+export type AuthConfig = Parameters<typeof serverAuth>

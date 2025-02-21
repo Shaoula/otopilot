@@ -1,7 +1,35 @@
 <script setup lang="ts">
+import type { UserWithRole } from 'better-auth/plugins';
+
 const { user } = useAuth()
 
 const ui = useUiState()
+
+const avatarMenuItemsBase = [
+  {
+    label: 'Ayarlar',
+    icon: 'i-lucide-settings',
+    to: '/settings'
+  },
+  {
+    label: 'Çıkış Yap',
+    icon: 'i-lucide-log-out',
+    to: '/auth/logout'
+  }
+]
+
+const isSuperAdmin = computed(() => (user?.value as UserWithRole)?.role === 'superadmin')
+
+const avatarMenuItems = computed(() => [
+  ...(isSuperAdmin.value ? [{
+    label: 'Yönetim Paneli',
+    icon: 'i-lucide-shield',
+    to: '/admin'
+  }] : []),
+  ...avatarMenuItemsBase
+])
+
+
 </script>
 
 <template>
@@ -33,7 +61,7 @@ const ui = useUiState()
           color="neutral"
           class="ml-auto cursor-pointer"
           :avatar="{
-            src: `/api/users/avatar`,
+            src: user?.image ?? undefined,
             alt: user?.name,
           }"
         />

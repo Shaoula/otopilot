@@ -1,7 +1,27 @@
 <script setup lang="ts">
 import { NAV_ITEMS } from '@/constants/nav'
+import { breakpointsTailwind } from '@vueuse/core'
+
+const props = defineProps<{
+  navItems?: typeof NAV_ITEMS
+}>()
+
+const navs = computed(() => props.navItems ? props.navItems : NAV_ITEMS)
+
+const route = useRoute()
+// const img = useImage()
 
 const ui = useUiState()
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+const isMobile = breakpoints.smallerOrEqual('md')
+
+// If mobile, hide the sidebar on route change
+watch(route, () => {
+  if (isMobile.value) {
+    ui.toggleSidebar(false)
+  }
+})
 </script>
 
 <template>
@@ -20,7 +40,7 @@ const ui = useUiState()
 
         <UNavigationMenu 
         orientation="vertical" 
-        :items="NAV_ITEMS" 
+        :items="navs" 
         :ui="{
           link: 'h-8',
           item: 'px-4',
@@ -32,10 +52,10 @@ const ui = useUiState()
             <UButton
                 :icon="ui.theme === 'dark' ? 'i-lucide-moon' : 'i-lucide-sun'"
                 :label="ui.theme === 'dark' ? 'Koyu Mod' : 'Açık Mod'"
-                @click="ui.toggleTheme"
                 variant="subtle"
-                color="neutral" 
-                class="w-full"
+                color="neutral"
+                class="w-full" 
+                @click="ui.toggleTheme"
             />
         </div>
   </aside>

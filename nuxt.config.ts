@@ -14,7 +14,14 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@pinia/colada-nuxt',
     'pinia-plugin-persistedstate/nuxt',
+    '@nuxtjs/i18n'
   ],
+
+  nitro: {
+    experimental: {
+      tasks: true,
+    },
+  },
 
   runtimeConfig: {
     public: {
@@ -67,6 +74,28 @@ export default defineNuxtConfig({
     },
     quality: 80,
     formats: ['webp'],
+  },
+
+  i18n: {
+    locales: [
+      {
+        name: 'English',
+        code: 'en',
+        file: 'en.json',
+      },
+      {
+        name: 'Türkçe',
+        code: 'tr',
+        file: 'tr.json',
+      },
+    ],
+    defaultLocale: 'en',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
   },
 
   compatibilityDate: '2024-11-27'

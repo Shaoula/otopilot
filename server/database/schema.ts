@@ -4,18 +4,54 @@ import { generateId } from '../utils/id'
 
 export const users = sqliteTable('user', {
     id: text('id').primaryKey().unique().notNull().$defaultFn(() => generateId()),
+    name: text('name').notNull(),
     email: text('email').unique().notNull(),
     emailVerified: integer('emailVerified', { mode: 'boolean' }),
     image: text('image'),
-    isAnonymous: integer('isAnonymous', { mode: 'boolean' }),
     role: text('role').default('user'),
     createdAt: integer('createdAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
     updatedAt: integer('updatedAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
     deletedAt: integer('deletedAt', { mode: 'timestamp_ms' }),
 })
 
+export const businesses = sqliteTable('business', {
+    id: text('id').primaryKey().unique().notNull().$defaultFn(() => generateId()),
+    name: text('name').notNull(),
+    email: text('email').notNull(),
+    phone: text('phone'),
+    address: text('address'),
+    logo: text('logo'),
+    timezone: text('timezone').notNull().default('UTC'),
+    createdAt: integer('createdAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
+    updatedAt: integer('updatedAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
+    deletedAt: integer('deletedAt', { mode: 'timestamp_ms' }),
+})
+
+export const businessUsers = sqliteTable('businessUser', {
+    id: text('id').primaryKey().unique().notNull().$defaultFn(() => generateId()),
+    businessId: text('businessId').references(() => businesses.id).notNull(),
+    userId: text('userId').references(() => users.id).notNull(),
+    role: text('role', { enum: ['owner', 'editor'] }).notNull().default('editor'),
+    isActive: integer('isActive', { mode: 'boolean' }).notNull().default(true),
+    createdAt: integer('createdAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
+    updatedAt: integer('updatedAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
+    deletedAt: integer('deletedAt', { mode: 'timestamp_ms' }),
+})
+
+export const businessUserRelations = relations(businessUsers, ({ one }) => ({
+    business: one(businesses, {
+        fields: [businessUsers.businessId],
+        references: [businesses.id]
+    }),
+    user: one(users, {
+        fields: [businessUsers.userId],
+        references: [users.id]
+    })
+}))
+
 export const ads = sqliteTable('ads', {
     id: text('id').primaryKey().unique().notNull().$defaultFn(() => generateId()),
+    businessId: text('businessId').references(() => businesses.id).notNull(),
     slug: text('slug').notNull(),
     title: text('title').notNull(),
     description: text('description'),
@@ -32,17 +68,15 @@ export const ads = sqliteTable('ads', {
     enginePower: integer('enginePower'),
     doors: integer('doors'),
     seats: integer('seats'),
-    driveType: text('driveType'),
     transmission: text('transmission', { enum: ['manual', 'automatic'] }).default('manual'),
-    vin: text('vin'),
     createdAt: integer('createdAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
     updatedAt: integer('updatedAt', { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
     deletedAt: integer('deletedAt', { mode: 'timestamp_ms' }),
-    isActive: integer('isActive').default(1),
-    isFeatured: integer('isFeatured').default(0),
-    status: text('status').default('pending'),
-    userId: text('userId').notNull(),
-    categoryId: text('categoryId'),
+    isActive: integer('isActive', { mode: 'boolean' }).default(true),
+    isFeatured: integer('isFeatured', { mode: 'boolean' }).default(false),
+    status: text('status', { enum: ['pending', 'approved', 'rejected'] }).default('pending'),
+    userId: text('userId').references(() => users.id).notNull(),
+    categoryId: text('categoryId').references(() => categories.id),
     visuals: text('visuals', { mode: 'json' }),
     features: text('features', { mode: 'json' })
 })

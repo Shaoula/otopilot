@@ -5,18 +5,46 @@ export const NAV_ITEMS = [
         to: '/'
     },
     {
+        label: 'Kategoriler',
+        icon: 'i-lucide-list-tree',
+        to: '/categories'
+    },
+    {
         label: 'İlanlar',
         icon: 'i-lucide-list',
-        to: '/ilanlar'
+        to: '/ads'
     },
     {
         label: 'Kullanıcılar',
         icon: 'i-lucide-users',
-        to: '/kullanıcılar'
+        to: '/users'
     },
     {
         label: 'Ayarlar',
         icon: 'i-lucide-settings',
-        to: '/ayarlar'
+        to: '/settings'
+    }
+]
+
+export const ADMIN_NAV_ITEMS = [
+    {
+        label: 'Anasayfa',
+        icon: 'i-lucide-home',
+        to: '/admin'
+    },
+    {
+        label: 'İşletmeler',
+        icon: 'i-lucide-building-2',
+        to: '/admin/businesses'
+    },
+    {
+        label: 'Kullanıcılar',
+        icon: 'i-lucide-users',
+        to: '/admin/users'
+    },
+    {
+        label: 'Ayarlar',
+        icon: 'i-lucide-settings',
+        to: '/admin/settings'
     }
 ]

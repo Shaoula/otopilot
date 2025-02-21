@@ -1,7 +1,11 @@
+<script setup lang="ts">
+import { ADMIN_NAV_ITEMS } from '~/constants/nav'
+</script>
+
 <template>
   <div class="h-screen flex">
     <!-- Sidebar -->
-    <NavSidebar />
+    <NavSidebar :nav-items="ADMIN_NAV_ITEMS" />
 
     <!-- Main Content -->
     <div class="flex-1 flex flex-col overflow-hidden">

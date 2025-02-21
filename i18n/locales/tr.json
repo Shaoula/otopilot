@@ -1,0 +1,249 @@
+{
+  "auth": {
+    "login": {
+      "title": "Hesabınıza giriş yapın",
+      "description": "Cheffy'e hoşgeldiniz",
+      "emailLabel": "Eposta",
+      "emailPlaceholder": "Eposta adresinizi girin",
+      "otpLabel": "Doğrulama Kodu",
+      "sendCodeButton": "Kodu Gönder",
+      "loginButton": "Giriş Yap"
+    }
+  },
+  "nav": {
+    "home": "Anasayfa",
+    "admin": "Yönetici",
+    "users": "Kullanıcılar",
+    "business": "İşletme",
+    "businesses": "İşletmeler",
+    "screens": "Ekranlar",
+    "products": "Ürünler",
+    "settings": "Ayarlar",
+    "logout": "Çıkış Yap"
+  },
+  "common": {
+    "save": "Kaydet {item}",
+    "add": "Ekle {item}",
+    "edit": "Düzenle {item}",
+    "delete": "Sil {item}",
+    "cancel": "İptal",
+    "online": "Çevrimiçi",
+    "offline": "Çevrimdışı",
+    "active": "Aktif",
+    "inactive": "Aktif Değil",
+    "view": "Görünüm {item}",
+    "search": "Arama {entity}",
+    "upload": "Yükle {item}",
+    "select": "Seç {item}",
+    "change": "Değiştir",
+    "success": "Başarılı",
+    "error": "Hata",
+    "position": "Pozisyon {position}",
+    "manage": "Yönet {item}"
+  },
+  "user": "Kullanıcı",
+  "users": {
+    "notifications": {
+      "success": {
+        "saved": "Kullanıcı kaydedildi"
+      }
+    }
+  },
+  "business": "İşletme",
+  "businesses": {
+    "title": "İşletme",
+    "description": "İşletmenizi yönetin",
+    "add": {
+      "title": "İşletme Ekle",
+      "description": "Yeni bir işletme ekleyin"
+    },
+    "empty": {
+      "title": "İşletme bulunamadı",
+      "description": "Henüz bir işletme yok. Bir tane ekleyin",
+      "action": "İşletme Ekle"
+    },
+    "setup": {
+      "title": "İşletmenizi kurun",
+      "description": "İşletmenizi başlatmak için kurun",
+      "submit": "İşletme oluştur",
+      "error": {
+        "title": "İşletme oluşturulamadı",
+        "description": "Lütfen tekrar deneyin"
+      },
+      "success": {
+        "title": "İşletme oluşturuldu",
+        "description": "İşletmeniz oluşturuldu"
+      }
+    },
+    "edit": {
+      "title": "İşletmeyi düzenleyin",
+      "description": "İşletmenizi güncelleyin",
+      "logo": "Logo",
+      "avatarHint": "İşletmeniz için bir logo yükleyin",
+      "selectLogo": "Logo Seç"
+    },
+    "form": {
+      "name": "İşletme Adı",
+      "namePlaceholder": "İşletmenizin adını girin",
+      "identifier": "İşletme Tanımlayıcısı",
+      "identifierPlaceholder": "İşletmenizin tanımlayıcısını girin",
+      "identifierHelp": "Bu, işletmenizin sistemdeki tanımlayıcısıdır. İşletmenizi tanımlamak için kullanılacaktır.",
+      "email": "İşletme Epostası",
+      "emailPlaceholder": "İşletmenizin epostasını girin",
+      "phone": "İşletme Telefonu",
+      "phonePlaceholder": "İşletmenizin telefonunu girin"
+    },
+    "notifications": {
+      "success": {
+        "saved": "İşletme kaydedildi",
+        "logoUpdated": "Logo güncellendi"
+      },
+      "error": {
+        "logoUpdateFailed": "Logo güncellenemedi"
+      }
+    },
+    "users": {
+      "title": "İşletme Kullanıcıları",
+      "create": "İşletme için Kullanıcı Oluştur",
+      "empty": {
+        "title": "Kullanıcı bulunamadı",
+        "description": "Bu işletme için kullanıcı yok."
+      },
+      "notifications": {
+        "success": {
+          "saved": "Kullanıcı kaydedildi"
+        }
+      }
+    },
+    "settings": {
+      "title": "İşletme Ayarları",
+      "description": "İşletmenizi yönetin",
+      "error": "İşletme güncellenemedi",
+      "errorDescription": "Lütfen tekrar deneyin",
+      "success": "İşletme güncellendi"
+    }
+  },
+  "screen": "Ekran",
+  "screens": {
+    "title": "Ekranlar",
+    "empty": {
+      "title": "Ekran bulunamadı",
+      "description": "Henüz bir ekran yok. Bir tane ekleyin"
+    },
+    "orientation": {
+      "landscape": "Yatay",
+      "portrait": "Dikey"
+    },
+    "form": {
+      "edit": "Ekranı düzenleyin",
+      "create": "Ekran oluştur",
+      "name": {
+        "required": "İsim gereklidir"
+      },
+      "description": {
+        "required": "Açıklama gereklidir"
+      },
+      "price": {
+        "required": "Fiyat gereklidir"
+      }
+    },
+    "notifications": {
+      "confirm": {
+        "delete": "Ekranı sil",
+        "deleteMessage": "\"{name}\" adlı ekranı silmek istediğinize emin misiniz?"
+      }
+    },
+    "products": {
+      "description": "Ürünleri ekleyin ekranınızda görüntüleyin.",
+      "empty": {
+        "title": "Ürün bulunamadı",
+        "description": "Henüz bir ürün yok. Bir tane ekleyin"
+      }
+    },
+    "items": {
+      "form": {
+        "success": {
+          "title": "Ürün kaydedildi",
+          "description": "Ürün başarıyla kaydedildi"
+        }
+      }
+    },
+    "statistics": {
+      "total": "Toplam Ekran",
+      "active": "Aktif Ekran",
+      "offline": "Çevrimdışı Ekran"
+    }
+  },
+  "product": "Ürün",
+  "products": {
+    "title": "Ürünler",
+    "empty": {
+      "title": "Ürün bulunamadı",
+      "description": "Henüz bir ürün yok. Bir tane ekleyin"
+    },
+    "notifications": {
+      "confirm": {
+        "delete": "Ürünü sil",
+        "deleteMessage": "\"{name}\" adlı ürünü silmek istediğinize emin misiniz?"
+      },
+      "success": {
+        "deleted": "Ürün başarıyla silindi"
+      },
+      "error": {
+        "deleteFailed": {
+          "title": "Ürün silinemedi",
+          "description": "Lütfen tekrar deneyin"
+        }
+      }
+    },
+    "form": {
+      "edit": "Ürünü düzenleyin",
+      "create": "Ürün oluştur"
+    },
+    "noPrice": "Fiyat yok",
+    "noDescription": "Açıklama yok",
+    "count": "{count} öğe"
+  },
+  "labels": {
+    "id": "ID",
+    "name": "İsim",
+    "email": "Eposta",
+    "emailVerified": "Eposta Doğrulandı",
+    "image": "Görsel",
+    "identifier": "Tanımlayıcı",
+    "createdAt": "Oluşturulma Tarihi",
+    "updatedAt": "Güncellenme Tarihi",
+    "role": "Rol",
+    "banned": "Yasaklı",
+    "banReason": "Yasak Sebebi",
+    "banExpires": "Yasak Süresi",
+    "businesses": "İşletmeler",
+    "user": "Kullanıcı",
+    "users": "Kullanıcılar",
+    "actions": "Eylemler",
+    "description": "Açıklama",
+    "phone": "Telefon",
+    "address": "Adres",
+    "timezone": "Zaman Dilimi",
+    "logo": "Logo",
+    "business": "İşletme",
+    "owner": "Sahibi",
+    "editor": "Düzenleyici",
+    "price": "Fiyat",
+    "position": "Pozisyon",
+    "isActive": "Aktif"
+  },
+  "notifications": {
+    "table": {
+      "notFound": "{entity} bulunamadı"
+    }
+  },
+  "errors": {
+    "required": "{item} gereklidir",
+    "invalid": "{item} geçersizdir",
+    "notFound": "{item} bulunamadı"
+  },
+  "form": {
+    "select": "Seç {item}"
+  }
+}

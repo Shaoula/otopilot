@@ -1,0 +1,249 @@
+{
+  "auth": {
+    "login": {
+      "title": "Login to your account",
+      "description": "Welcome to Cheffy",
+      "emailLabel": "Email",
+      "emailPlaceholder": "Enter your email",
+      "otpLabel": "Verification Code",
+      "sendCodeButton": "Send Code",
+      "loginButton": "Login"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "admin": "Admin",
+    "users": "Users",
+    "business": "Business",
+    "businesses": "Businesses",
+    "screens": "Screens",
+    "products": "Products",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "common": {
+    "save": "Save {item}",
+    "add": "Add {item}",
+    "edit": "Edit {item}",
+    "delete": "Delete {item}",
+    "cancel": "Cancel",
+    "online": "Online",
+    "offline": "Offline",
+    "active": "Active",
+    "inactive": "Inactive",
+    "view": "View {item}",
+    "search": "Search {entity}",
+    "upload": "Upload {item}",
+    "select": "Select {item}",
+    "change": "Change",
+    "success": "Success",
+    "error": "Error",
+    "position": "Position {position}",
+    "manage": "Manage {item}"
+  },
+  "user": "User | User | Users",
+  "users": {
+    "notifications": {
+      "success": {
+        "saved": "User saved successfully"
+      }
+    }
+  },
+  "business": "Business | Business | Business",
+  "businesses": {
+    "title": "Business",
+    "description": "Manage your business",
+    "add": {
+      "title": "Add Business",
+      "description": "Add a new business to your account"
+    },
+    "empty": {
+      "title": "No businesses found",
+      "description": "You don't have any businesses yet. Add one to get started.",
+      "action": "Add Business"
+    },
+    "setup": {
+      "title": "Setup your business",
+      "description": "Setup your business to get started",
+      "submit": "Create business",
+      "error": {
+        "title": "Failed to create business",
+        "description": "Please try again"
+      },
+      "success": {
+        "title": "Business created",
+        "description": "Your business has been created"
+      }
+    },
+    "edit": {
+      "title": "Edit Business",
+      "description": "Edit your business to update your details",
+      "logo": "Logo",
+      "avatarHint": "Upload a logo for your business",
+      "selectLogo": "Select Logo"
+    },
+    "form": {
+      "name": "Business Name",
+      "namePlaceholder": "Enter your business name",
+      "identifier": "Business Identifier",
+      "identifierPlaceholder": "Enter your business identifier",
+      "identifierHelp": "This is the identifier of your business. It will be used to identify your business in the system.",
+      "email": "Business Email",
+      "emailPlaceholder": "Enter your business email",
+      "phone": "Business Phone",
+      "phonePlaceholder": "Enter your business phone"
+    },
+    "notifications": {
+      "success": {
+        "saved": "Business saved successfully",
+        "logoUpdated": "Logo updated successfully"
+      },
+      "error": {
+        "logoUpdateFailed": "Failed to update logo"
+      }
+    },
+    "users": {
+      "title": "Business Users",
+      "create": "Create User for {business}",
+      "empty": {
+        "title": "No users found",
+        "description": "This business has no users yet."
+      },
+      "notifications": {
+        "success": {
+          "saved": "User saved successfully"
+        }
+      }
+    },
+    "settings": {
+      "title": "Business Settings",
+      "description": "Manage your business settings",
+      "error": "Failed to update business",
+      "errorDescription": "Please try again",
+      "success": "Business updated successfully"
+    }
+  },
+  "screen": "Screen | Screen | Screens",
+  "screens": {
+    "title": "Screens",
+    "empty": {
+      "title": "No screens found",
+      "description": "You don't have any screens yet. Add one to get started."
+    },
+    "orientation": {
+      "landscape": "Landscape",
+      "portrait": "Portrait"
+    },
+    "form": {
+      "edit": "Edit Screen",
+      "create": "Create Screen",
+      "name": {
+        "required": "Name is required"
+      },
+      "description": {
+        "required": "Description is required"
+      },
+      "price": {
+        "required": "Price is required"
+      }
+    },
+    "notifications": {
+      "confirm": {
+        "delete": "Delete Screen",
+        "deleteMessage": "Are you sure you want to delete this screen named \"{name}\"?"
+      }
+    },
+    "products": {
+      "description": "Add products to your screen to display on your screen.",
+      "empty": {
+        "title": "No products found",
+        "description": "You don't have any products yet. Add one to get started."
+      }
+    },
+    "items": {
+      "form": {
+        "success": {
+          "title": "Product saved successfully",
+          "description": "The product has been saved successfully"
+        }
+      }
+    },
+    "statistics": {
+      "total": "Total Screens",
+      "active": "Active Screens",
+      "offline": "Offline Screens"
+    }
+  },
+  "product": "Product | Products | Product",
+  "products": {
+    "title": "Products",
+    "empty": {
+      "title": "No products found",
+      "description": "You don't have any products yet. Add one to get started."
+    },
+    "notifications": {
+      "confirm": {
+        "delete": "Delete Product",
+        "deleteMessage": "Are you sure you want to delete this product named \"{name}\"?"
+      },
+      "success": {
+        "deleted": "Product deleted successfully"
+      },
+      "error": {
+        "deleteFailed": {
+          "title": "Failed to delete product",
+          "description": "Please try again"
+        }
+      }
+    },
+    "form": {
+      "edit": "Edit Product",
+      "create": "Create Product"
+    },
+    "noPrice": "No price",
+    "noDescription": "No description",
+    "count": "{count} items"
+  },
+  "labels": {
+    "id": "ID",
+    "name": "Name",
+    "email": "Email",
+    "emailVerified": "Email Verified",
+    "image": "Image",
+    "identifier": "Identifier",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At",
+    "role": "Role",
+    "banned": "Banned",
+    "banReason": "Ban Reason",
+    "banExpires": "Ban Expires",
+    "businesses": "Businesses",
+    "user": "User",
+    "users": "Users",
+    "actions": "Actions",
+    "description": "Description",
+    "phone": "Phone",
+    "address": "Address",
+    "timezone": "Timezone",
+    "logo": "Logo",
+    "business": "Business",
+    "owner": "Owner",
+    "editor": "Editor",
+    "price": "Price",
+    "position": "Position",
+    "isActive": "Active"
+  },
+  "notifications": {
+    "table": {
+      "notFound": "No {entity} found"
+    }
+  },
+  "errors": {
+    "required": "The {item} is required",
+    "invalid": "The {item} is invalid",
+    "notFound": "The {item} was not found"
+  },
+  "form": {
+    "select": "Select {item}"
+  }
+}
