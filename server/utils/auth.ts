@@ -38,7 +38,7 @@ export function serverAuth() {
             baseURL: getBaseURL(),
             plugins: [
                 admin({
-                    adminRole: ['admin', 'superadmin'],
+                    adminRoles: ['admin', 'superadmin'],
                 }),
 
                 emailOTP({
