@@ -1,12 +1,11 @@
 export default defineEventHandler(async (event) => {
-
   // Skip domain check when running in dev mode
   if (process.env.NODE_ENV === 'development') {
     return
   }
 
   // Skip domain check for non-API routes
-  if (!event.path.startsWith('/api/') && event.path.startsWith('/api/auth')) {
+  if (!event.path.startsWith('/api/') || event.path.startsWith('/api/auth')) {
     return
   }
 
@@ -17,6 +16,7 @@ export default defineEventHandler(async (event) => {
   if (!origin) {
     throw createError({
       statusCode: 401,
+      statusMessage: 'Origin header is required',
       message: 'Origin header is required',
     })
   }
