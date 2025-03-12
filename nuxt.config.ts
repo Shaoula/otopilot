@@ -43,6 +43,10 @@ export default defineNuxtConfig({
     },
   },
 
+  resend: {
+    apiKey: process.env.NUXT_RESEND_API_KEY,
+  },
+
   css: ['~/assets/css/main.css'],
 
   future: {
