@@ -64,6 +64,7 @@ const baseFields: FormField[] = [
     type: 'text',
     required: true,
     component: 'FormFileInput',
+    dependsOn: isAdmin.value ? ['businessId'] : [],
     attrs: {
       multiple: true,
       autoUpload: true,
