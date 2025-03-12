@@ -11,8 +11,11 @@ export default defineEventHandler(async (_event) => {
         })
     }
 
+    const userRole = (authSession.user as IUser).role
+    const isAdmin = userRole === 'admin' || userRole === 'superadmin'
+
     const businessId = (authSession.user as IUser).businessId
-    if (!businessId) {
+    if (!businessId && !isAdmin) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Bad Request',
@@ -20,5 +23,5 @@ export default defineEventHandler(async (_event) => {
         })
     }
 
-    return await getAdsByBusinessId(businessId)
+    return await getAdsByBusinessId(businessId ?? undefined)
 })

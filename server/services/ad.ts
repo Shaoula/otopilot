@@ -10,14 +10,14 @@ export async function listAds(): Promise<IAd[]> {
     .orderBy(desc(tables.ads.createdAt))
 }
 
-export async function getAdsByBusinessId(businessId: string): Promise<IAd[]> {
+export async function getAdsByBusinessId(businessId?: string): Promise<IAd[]> {
     return await useDrizzle()
         .select()
         .from(tables.ads)
         .where(
             and(
                 isNull(tables.ads.deletedAt),
-                eq(tables.ads.businessId, businessId),
+                businessId ? eq(tables.ads.businessId, businessId) : undefined,
             )
         )
         .orderBy(desc(tables.ads.createdAt))
