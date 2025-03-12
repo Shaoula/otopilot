@@ -30,7 +30,17 @@ export default defineNuxtConfig({
         redirectGuestTo: '/auth/login',
       },
     },
+    resend: {
+      apiKey: process.env.NUXT_RESEND_API_KEY,
+    },
+    // emailFrom: process.env.NUXT_EMAIL_FROM,
     allowedDomains: process.env.ALLOWED_DOMAINS?.split(',') || ['localhost:3000']
+  },
+
+  $production: {
+    resend: {
+      apiKey: process.env.NUXT_RESEND_API_KEY,
+    },
   },
 
   css: ['~/assets/css/main.css'],
