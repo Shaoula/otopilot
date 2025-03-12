@@ -163,9 +163,16 @@ export function useForm<T extends z.ZodType>({
   }
 
   function resetForm() {
+    // Clear all existing values first
     Object.keys(state).forEach((key) => {
-      state[key] = initialState[key as keyof typeof initialState] ?? undefined
+      state[key] = undefined
     })
+
+    // Then set initial values
+    Object.entries(initialState).forEach(([key, value]) => {
+      state[key] = structuredClone(value)
+    })
+
     form.value?.clear()
   }
 

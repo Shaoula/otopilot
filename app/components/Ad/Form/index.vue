@@ -231,6 +231,8 @@ async function onSubmit(state: z.infer<typeof schema>) {
   const { saveAd } = useSaveAd()
 
   await saveAd({ id: props.data?.id, ...state} as IAd)
+
+  context.resetForm()
 }
 
 const context = useForm({
