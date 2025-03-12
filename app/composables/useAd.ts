@@ -1,19 +1,22 @@
-import type { IAd } from '~~/types'
+import consola from 'consola'
+import type { IAd, IUser } from '~~/types'
 
 const _baseUrl = '/api/ads'
-const _baseKey = 'ads'
+const _baseKey = 'adRecords'
+type BaseType = IAd
 
-export const useAds = defineQuery(() => {
-  // Fetch
+export const useAd = defineQuery(() => {
   const { data, ...rest } = useQuery({
     key: [_baseKey],
-    query: async (): Promise<IAd[]> => {
-      const { data } = await useFetch<IAd[]>(_baseUrl)
+    query: async (): Promise<BaseType[]> => {
+      const { data } = await useFetch<BaseType[]>(_baseUrl)
       return data.value ?? []
     },
   })
 
-  const getAd = (slug: string): IAd | undefined => {
+  consola.info('useAd', data.value)
+
+  const getAd = (slug: string): BaseType | undefined => {
     const foundData = data.value?.find(record => record.slug === slug)
 
     if (!foundData)
@@ -22,32 +25,44 @@ export const useAds = defineQuery(() => {
     return foundData
   }
 
-  const getAdsByBusinessId = (businessId: string): IAd[] => {
-    return data.value?.filter(record => record.businessId === businessId) ?? []
-  }
-
-  const getAdBySlug = (slug: string): IAd | undefined => {
-    const foundData = data.value?.find(record => record.slug === slug)
+  const refetchAd = async (id: string) => {
+    const foundData = getAd(id)
 
     if (!foundData)
-      return undefined
+      return
 
-    return foundData
+    // Refetch category
+    const { data: fetchedData } = await useFetch<BaseType>(`${_baseUrl}/${id}`)
+
+    return fetchedData.value
   }
+
+  const getAdUsers = async (id: string) => {
+    const foundData = data.value?.find(record => record.id === id)
+
+    if (!foundData)
+      return []
+
+    // Fetch users
+    const { data: fetchedData } = await useFetch<IUser[]>(`${_baseUrl}/${id}/users`)
+
+    return fetchedData.value ?? []
+  }
+
   return {
     ads: data,
     ...rest,
 
     // Functions
     getAd,
-    getAdsByBusinessId,
-    getAdBySlug,
+    getAdUsers,
+    refetchAd,
   }
 })
 
 export const useSaveAd = defineMutation(() => {
   const { mutateAsync, ...rest } = useMutation({
-    mutation: async (data: IAd) => {
+    mutation: async (data: BaseType) => {
       const url = data.id ? `${_baseUrl}/${data.id}` : _baseUrl
       const method = data.id ? 'PUT' : 'POST'
 
@@ -56,9 +71,8 @@ export const useSaveAd = defineMutation(() => {
         body: JSON.stringify(data),
       })
 
-      if (!response.ok) {
+      if (!response.ok)
         throw createError(response)
-      }
 
       return response.json()
     },
@@ -70,13 +84,10 @@ export const useSaveAd = defineMutation(() => {
 export const useDeleteAd = defineMutation(() => {
   const { mutateAsync, ...rest } = useMutation({
     mutation: async (id: string) => {
-      const response = await fetch(`${_baseUrl}/${id}`, {
-        method: 'DELETE',
-      })
+      const response = await fetch(`${_baseUrl}/${id}`, { method: 'DELETE' })
 
-      if (!response.ok) {
+      if (!response.ok)
         throw createError(response)
-      }
 
       return response.json()
     },

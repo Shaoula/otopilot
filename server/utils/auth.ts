@@ -16,6 +16,10 @@ export function serverAuth() {
             },
             user: {
                 additionalFields: {
+                    businessId: {
+                        type: 'string',
+                        input: false,
+                    },
                     role: {
                         type: 'string',
                         defaultValue: 'user',

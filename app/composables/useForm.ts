@@ -22,6 +22,7 @@ export interface FormField {
 export interface UseFormOptions<T extends z.ZodType> {
   schema: T
   fields: FormField[] | ComputedRef<FormField[]> | Ref<FormField[]>
+  collapsedFields?: FormField[] | ComputedRef<FormField[]> | Ref<FormField[]>
   initialState?: Partial<z.infer<T>>
   onInput?: (state: z.infer<T>, setState: (state: z.infer<T>) => void) => void
   onSubmit: (state: z.infer<T>) => Promise<void> | void
@@ -38,6 +39,7 @@ export interface FormContext<T extends z.ZodType> {
   form: Ref<Form<T> | undefined>
   state: z.infer<T> & { [key: string]: unknown }
   fields: ComputedRef<FormField[]>
+  collapsedFields: ComputedRef<FormField[]>
   asyncStatus: Ref<'idle' | 'loading' | 'error'>
   handleSubmit: () => Promise<void>
   handleError: (event: FormErrorEvent) => void
@@ -55,6 +57,7 @@ interface FormError extends Error {
 export function useForm<T extends z.ZodType>({
   schema,
   fields,
+  collapsedFields,
   initialState = {},
   onSubmit,
   onSuccess,
@@ -77,6 +80,13 @@ export function useForm<T extends z.ZodType>({
       return fields.value
     }
     return fields
+  })
+
+  const collapsedFieldsRef = computed(() => {
+    if (isRef(collapsedFields)) {
+      return collapsedFields.value ?? [] as FormField[]
+    }
+    return collapsedFields as FormField[]
   })
 
   // Watch for changes in fields with dependencies
@@ -115,7 +125,7 @@ export function useForm<T extends z.ZodType>({
       toast.add({
         description: successMessage,
         color: 'success',
-        icon: 'i-solar-check-circle-linear',
+        icon: 'i-lucide-circle-check',
       })
 
       onSuccess?.()
@@ -137,7 +147,7 @@ export function useForm<T extends z.ZodType>({
       toast.add({
         description: errorMessage,
         color: 'error',
-        icon: 'i-solar-shield-warning-broken',
+        icon: 'i-lucide-shield-alert',
       })
     }
   }
@@ -164,6 +174,7 @@ export function useForm<T extends z.ZodType>({
     form,
     state,
     fields: fieldsRef,
+    collapsedFields: collapsedFieldsRef,
     asyncStatus,
     handleSubmit,
     handleError,

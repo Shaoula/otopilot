@@ -1,5 +1,5 @@
 import { adCreateSchema } from '~~/schemas/zod'
-import { createAd } from '~~/server/services/ads'
+import { createAd } from '~~/server/services/ad'
 import { verifyBusinessAccess } from '~~/server/services/businessUser'
 
 export default defineEventHandler(async (event) => {

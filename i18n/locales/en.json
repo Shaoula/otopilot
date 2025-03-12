@@ -2,7 +2,7 @@
   "auth": {
     "login": {
       "title": "Login to your account",
-      "description": "Welcome to Cheffy",
+      "description": "Welcome to OtoPilot",
       "emailLabel": "Email",
       "emailPlaceholder": "Enter your email",
       "otpLabel": "Verification Code",
@@ -15,9 +15,10 @@
     "admin": "Admin",
     "users": "Users",
     "business": "Business",
+    "myBusiness": "My Business",
     "businesses": "Businesses",
-    "screens": "Screens",
-    "products": "Products",
+    "categories": "Categories",
+    "ads": "Ads",
     "settings": "Settings",
     "logout": "Logout"
   },
@@ -26,6 +27,12 @@
     "add": "Add {item}",
     "edit": "Edit {item}",
     "delete": "Delete {item}",
+    "send": "Send {item}",
+    "call": "Call {item}",
+    "noPhone": "No phone number",
+    "copy": "Copy {item}",
+    "copied": "{item} copied",
+    "copiedToClipboard": "{item} copied to clipboard",
     "cancel": "Cancel",
     "online": "Online",
     "offline": "Offline",
@@ -38,7 +45,6 @@
     "change": "Change",
     "success": "Success",
     "error": "Error",
-    "position": "Position {position}",
     "manage": "Manage {item}"
   },
   "user": "User | User | Users",
@@ -123,86 +129,51 @@
       "success": "Business updated successfully"
     }
   },
-  "screen": "Screen | Screen | Screens",
-  "screens": {
-    "title": "Screens",
+  "category": "Category | Category | Categories",
+  "categories": {
+    "title": "Categories",
+    "description": "Manage your categories",
+    "add": {
+      "title": "Add Category",
+      "description": "Add a new category to your business"
+    },
+    "edit": {
+      "title": "Edit Category",
+      "description": "Edit your category to update your details"
+    },
     "empty": {
-      "title": "No screens found",
-      "description": "You don't have any screens yet. Add one to get started."
-    },
-    "orientation": {
-      "landscape": "Landscape",
-      "portrait": "Portrait"
-    },
-    "form": {
-      "edit": "Edit Screen",
-      "create": "Create Screen",
-      "name": {
-        "required": "Name is required"
-      },
-      "description": {
-        "required": "Description is required"
-      },
-      "price": {
-        "required": "Price is required"
-      }
+      "title": "No categories found",
+      "description": "This business has no categories yet.",
+      "action": "Add Category"
     },
     "notifications": {
-      "confirm": {
-        "delete": "Delete Screen",
-        "deleteMessage": "Are you sure you want to delete this screen named \"{name}\"?"
+      "success": {
+        "saved": "Category saved successfully"
       }
-    },
-    "products": {
-      "description": "Add products to your screen to display on your screen.",
-      "empty": {
-        "title": "No products found",
-        "description": "You don't have any products yet. Add one to get started."
-      }
-    },
-    "items": {
-      "form": {
-        "success": {
-          "title": "Product saved successfully",
-          "description": "The product has been saved successfully"
-        }
-      }
-    },
-    "statistics": {
-      "total": "Total Screens",
-      "active": "Active Screens",
-      "offline": "Offline Screens"
     }
   },
-  "product": "Product | Products | Product",
-  "products": {
-    "title": "Products",
+  "ad": "Ad | Ad | Ads",
+  "ads": {
+    "title": "Ads",
+    "description": "Manage your ads",
+    "add": {
+      "title": "Add Ad",
+      "description": "Add a new ad to your business"
+    },
+    "edit": {
+      "title": "Edit Ad",
+      "description": "Edit your ad to update your details"
+    },
     "empty": {
-      "title": "No products found",
-      "description": "You don't have any products yet. Add one to get started."
+      "title": "No ads found",
+      "description": "This business has no ads yet.",
+      "action": "Add Ad"
     },
     "notifications": {
-      "confirm": {
-        "delete": "Delete Product",
-        "deleteMessage": "Are you sure you want to delete this product named \"{name}\"?"
-      },
       "success": {
-        "deleted": "Product deleted successfully"
-      },
-      "error": {
-        "deleteFailed": {
-          "title": "Failed to delete product",
-          "description": "Please try again"
-        }
+        "saved": "Ad saved successfully"
       }
-    },
-    "form": {
-      "edit": "Edit Product",
-      "create": "Create Product"
-    },
-    "noPrice": "No price",
-    "noDescription": "No description",
-    "count": "{count} items"
+    }
   },
   "labels": {
     "id": "ID",
@@ -210,7 +181,6 @@
     "email": "Email",
     "emailVerified": "Email Verified",
     "image": "Image",
-    "identifier": "Identifier",
     "createdAt": "Created At",
     "updatedAt": "Updated At",
     "role": "Role",
@@ -230,8 +200,41 @@
     "owner": "Owner",
     "editor": "Editor",
     "price": "Price",
-    "position": "Position",
-    "isActive": "Active"
+    "isActive": "Active",
+    "slug": "Slug",
+    "parent": "Parent",
+    "title": "Title",
+    "category": "Category",
+    "make": "Make",
+    "model": "Model",
+    "year": "Year",
+    "mileage": "Mileage",
+    "condition": "Condition",
+    "color": "Color",
+    "fuelType": "Fuel Type",
+    "gasoline": "Gasoline",
+    "diesel": "Diesel",
+    "electric": "Electric",
+    "hybrid": "Hybrid",
+    "other": "Other",
+    "gearType": "Gear Type",
+    "automatic": "Automatic",
+    "manual": "Manual",
+    "bodyType": "Body Type",
+    "sedan": "Sedan",
+    "coupe": "Coupe",
+    "convertible": "Convertible",
+    "suv": "SUV",
+    "truck": "Truck",
+    "van": "Van",
+    "minivan": "Minivan",
+    "hatchback": "Hatchback",
+    "wagon": "Wagon",
+    "engineCapacity": "Engine Capacity",
+    "enginePower": "Engine Power",
+    "doors": "Doors",
+    "seats": "Seats",
+    "visuals": "Visuals"
   },
   "notifications": {
     "table": {

@@ -9,6 +9,8 @@ const { t } = useI18n()
 useHead({
   title: `${t('nav.businesses', 2)} - ${t('nav.admin')}`,
 })
+
+const { refetch } = useBusiness()
 </script>
 
 <template>
@@ -18,14 +20,7 @@ useHead({
         {{ t('nav.businesses', 2) }}
       </PageTitle>
 
-      <UButton
-        to="/admin/businesses/new"
-        :label="t('common.add', t('business').toLowerCase())"
-        icon="i-lucide-plus"
-        color="neutral"
-        variant="ghost"
-        class="cursor-pointer"
-      />
+      <BusinessFormButton @success="refetch" />
     </div>
 
     <BusinessTable />

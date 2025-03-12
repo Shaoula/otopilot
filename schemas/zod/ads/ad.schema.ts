@@ -3,10 +3,11 @@ import { validators } from '../common'
 
 export const adSchema = z.object({
     id: z.string().refine(validators.isUUID, { message: 'Invalid UUID' }), // UUID but like: 5y-qX2Mmm8lZWJ3HOPU4r
+    businessId: z.string().refine(validators.isUUID, { message: 'Invalid UUID' }),
     slug: z.string(),
     title: z.string(),
     description: z.string(),
-    price: z.number(),
+    price: z.number().nullish(),
     make: z.string(),
     model: z.string(),
     color: z.string().nullish(),
@@ -21,7 +22,7 @@ export const adSchema = z.object({
     seats: z.number().nullish(),
     transmission: z.enum(['manual', 'automatic']).nullish(),
     categoryId: z.string().nullish(),
-    userId: z.string().nullish(),
+    userId: z.string(),
     visuals: z.array(z.string()).nullish(),
     features: z.array(z.string()).nullish(),
     status: z.enum(['pending', 'approved', 'rejected']).default('pending').nullish(),

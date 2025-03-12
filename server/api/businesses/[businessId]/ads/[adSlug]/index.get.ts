@@ -1,4 +1,4 @@
-import { getAdBySlug } from '~~/server/services/ads'
+import { getAdBySlug } from '~~/server/services/ad'
 import { verifyBusinessAccess } from '~~/server/services/businessUser'
 
 export default defineCachedEventHandler(async (event) => {

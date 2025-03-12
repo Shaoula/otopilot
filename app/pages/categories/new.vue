@@ -1,12 +1,14 @@
 <script setup lang="ts">
+import type { INewCategory } from '~~/types'
+
 const brands = ['Brand 1', 'Brand 2', 'Brand 3']
 const models = ['Model 1', 'Model 2', 'Model 3']
 // const colors = ['Red', 'Blue', 'Green']
 // const years = ['2020', '2021', '2022']
 
-const formState = reactive<ICreateAd>({})
+const formState = reactive<INewCategory>({} as INewCategory)
 
-const handleSubmit = (values: ICreateAd) => {
+const handleSubmit = (values: INewCategory) => {
     console.log(values)
 }
 </script>

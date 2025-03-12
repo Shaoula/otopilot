@@ -1,9 +1,9 @@
 
 <template>
     <div>
-        <h1 class="text-2xl font-bold">Yeni İlan</h1>
+        <PageTitle>Yeni İlan</PageTitle>
 
-        <AdsForm />
+        <AdForm />
 
         <!-- <UForm
             class="grid gap-4"

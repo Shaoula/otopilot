@@ -1,7 +1,7 @@
 import { getBusinessById } from '~~/server/services/business'
 import { verifyBusinessAccess } from '~~/server/services/businessUser'
 
-export default defineCachedEventHandler(async (event) => {
+export default defineEventHandler(async (event) => {
     // Check if user is authenticated
     const authSession = await getAuthSession(event)
     if (!authSession?.user?.id) throw createError({ statusCode: 401, statusMessage: 'Unauthorized', message: 'You are not authorized to access this resource' })

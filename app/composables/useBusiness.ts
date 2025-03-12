@@ -1,4 +1,4 @@
-import type { IBusiness } from '~~/types'
+import type { IBusiness, IUser } from '~~/types'
 
 const _baseUrl = '/api/businesses'
 const _baseKey = 'businesses'
@@ -14,12 +14,38 @@ export const useBusiness = defineQuery(() => {
   })
 
   const getBusiness = (id: string): BaseType | undefined => {
-    const foundData = data.value?.find(record => record.id === id)
+    const foundData = data.value?.find(record => {
+      return record.id === id
+    })
 
     if (!foundData)
       return undefined
 
     return foundData
+  }
+
+  const refetchBusiness = async (id: string) => {
+    const business = getBusiness(id)
+
+    if (!business)
+      return
+
+    // Refetch business
+    const { data: businessData } = await useFetch<BaseType>(`${_baseUrl}/${id}`)
+
+    return businessData.value
+  }
+
+  const getBusinessUsers = async (id: string) => {
+    const business = data.value?.find(business => business.id === id)
+
+    if (!business)
+      return []
+
+    // Fetch users
+    const { data: users } = await useFetch<IUser[]>(`${_baseUrl}/${id}/users`)
+
+    return users.value ?? []
   }
 
   return {
@@ -28,6 +54,8 @@ export const useBusiness = defineQuery(() => {
 
     // Functions
     getBusiness,
+    getBusinessUsers,
+    refetchBusiness,
   }
 })
 

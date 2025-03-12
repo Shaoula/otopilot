@@ -1,6 +1,6 @@
 import { defu } from 'defu'
 import { createAuthClient } from 'better-auth/client'
-import { emailOTPClient, inferAdditionalFields } from "better-auth/client/plugins"
+import { emailOTPClient, inferAdditionalFields, adminClient } from "better-auth/client/plugins"
 import type {
     InferSessionFromClient,
     InferUserFromClient,
@@ -20,7 +20,11 @@ export function useAuth() {
 
     const client = createAuthClient({
         baseURL: url.origin,
-        plugins: [emailOTPClient(), inferAdditionalFields<AuthConfig>()],
+        plugins: [
+            adminClient(),
+            emailOTPClient(),
+            inferAdditionalFields<AuthConfig>(),
+        ],
         fetchOptions: {
             headers,
         },

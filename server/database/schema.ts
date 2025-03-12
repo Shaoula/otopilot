@@ -4,6 +4,7 @@ import { generateId } from '../utils/id'
 
 export const users = sqliteTable('user', {
     id: text('id').primaryKey().unique().notNull().$defaultFn(() => generateId()),
+    businessId: text('businessId').references(() => businesses.id),
     name: text('name').notNull(),
     email: text('email').unique().notNull(),
     emailVerified: integer('emailVerified', { mode: 'boolean' }),
@@ -77,8 +78,8 @@ export const ads = sqliteTable('ads', {
     status: text('status', { enum: ['pending', 'approved', 'rejected'] }).default('pending'),
     userId: text('userId').references(() => users.id).notNull(),
     categoryId: text('categoryId').references(() => categories.id),
-    visuals: text('visuals', { mode: 'json' }),
-    features: text('features', { mode: 'json' })
+    visuals: text('visuals', { mode: 'json' }).$type<string[]>().default([]),
+    features: text('features', { mode: 'json' }).$type<string[]>().default([])
 })
 
 export const adsRelations = relations(ads, ({ one }) => ({
@@ -94,6 +95,7 @@ export const adsRelations = relations(ads, ({ one }) => ({
 
 export const categories = sqliteTable('categories', {
     id: text('id').primaryKey().unique().notNull().$defaultFn(() => generateId()),
+    businessId: text('businessId').references(() => businesses.id).notNull(),
     name: text('name').notNull(),
     slug: text('slug').notNull(),
     parentId: text('parentId'),
@@ -103,6 +105,10 @@ export const categories = sqliteTable('categories', {
 })
 
 export const categoriesRelations = relations(categories, ({ one }) => ({
+    business: one(businesses, {
+        fields: [categories.businessId],
+        references: [businesses.id]
+    }),
     parent: one(categories, {
         fields: [categories.parentId],
         references: [categories.id]

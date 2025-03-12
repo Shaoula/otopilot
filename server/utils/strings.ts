@@ -3,8 +3,10 @@ export const slugify = (str: string, opts: {
 } = {
         randomSuffix: false,
     }) => {
+    if (!str) return null
+    
     // Replace spaces with dashes
-    let slug = str.toLowerCase().replace(/ /g, '-')
+    let slug = str?.toLowerCase()?.replace(/ /g, '-')
 
     // Change Turkish characters
     slug = slug.replace(/ğ/g, 'g')

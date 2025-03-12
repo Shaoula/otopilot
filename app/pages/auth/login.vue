@@ -52,6 +52,7 @@ async function onSendCode() {
     toast.add({
       title: 'Hata',
       description: 'Lütfen daha sonra tekrar deneyiniz',
+      color: 'error',
     })
 
     isLoading.value = false

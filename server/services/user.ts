@@ -48,7 +48,7 @@ export async function createUser(data: INewUser) {
   }
 }
 
-export async function updateUser(email: string, data: Partial<IUser>) {
+export async function updateUser(userId: string, data: Partial<IUser>) {
   return await useDrizzle()
     .update(users)
     .set({
@@ -57,7 +57,7 @@ export async function updateUser(email: string, data: Partial<IUser>) {
     })
     .where(
       and(
-        eq(users.email, email),
+        eq(users.id, userId),
         isNull(users.deletedAt),
       ),
     )

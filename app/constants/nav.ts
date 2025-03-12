@@ -1,26 +1,26 @@
 export const NAV_ITEMS = [
     {
-        label: 'Anasayfa',
+        label: 'nav.home',
         icon: 'i-lucide-home',
         to: '/'
     },
     {
-        label: 'Kategoriler',
+        label: 'nav.myBusiness',
+        icon: 'i-lucide-building-2',
+        to: '/business'
+    },
+    {
+        label: 'nav.categories',
         icon: 'i-lucide-list-tree',
         to: '/categories'
     },
     {
-        label: 'İlanlar',
+        label: 'nav.ads',
         icon: 'i-lucide-list',
         to: '/ads'
     },
     {
-        label: 'Kullanıcılar',
-        icon: 'i-lucide-users',
-        to: '/users'
-    },
-    {
-        label: 'Ayarlar',
+        label: 'nav.settings',
         icon: 'i-lucide-settings',
         to: '/settings'
     }
@@ -28,23 +28,33 @@ export const NAV_ITEMS = [
 
 export const ADMIN_NAV_ITEMS = [
     {
-        label: 'Anasayfa',
+        label: 'nav.home',
         icon: 'i-lucide-home',
         to: '/admin'
     },
     {
-        label: 'İşletmeler',
+        label: 'nav.businesses',
         icon: 'i-lucide-building-2',
         to: '/admin/businesses'
     },
     {
-        label: 'Kullanıcılar',
+        label: 'nav.users',
         icon: 'i-lucide-users',
         to: '/admin/users'
     },
     {
-        label: 'Ayarlar',
-        icon: 'i-lucide-settings',
-        to: '/admin/settings'
-    }
+        label: 'nav.categories',
+        icon: 'i-lucide-list-tree',
+        to: '/admin/categories'
+    },
+    {
+        label: 'nav.ads',
+        icon: 'i-lucide-list',
+        to: '/admin/ads'
+    },
+    // {
+    //     label: 'Ayarlar',
+    //     icon: 'i-lucide-settings',
+    //     to: '/admin/settings'
+    // }
 ]

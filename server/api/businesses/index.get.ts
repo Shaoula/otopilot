@@ -1,8 +1,7 @@
 import { listBusinesses } from '~~/server/services/business'
 
-export default defineCachedEventHandler(async (_event) => {
+export default defineEventHandler(async (_event) => {
     const authSession = await getAuthSession(_event)
-
     if (!authSession) {
         throw createError({
             statusCode: 401,

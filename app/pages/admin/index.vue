@@ -47,29 +47,29 @@ const statistics: Statistic[] = [
 ]
 
 // TODO: Replace with real activity data from API
-const recentActivity = [
-  {
-    id: 1,
-    type: 'business_created',
-    message: 'New business "Coffee Shop" created',
-    timestamp: '2 hours ago',
-    icon: 'i-lucide-building-2',
-  },
-  {
-    id: 2,
-    type: 'user_invited',
-    message: 'New user invited to "Restaurant Chain"',
-    timestamp: '4 hours ago',
-    icon: 'i-lucide-user-plus',
-  },
-  {
-    id: 3,
-    type: 'screen_added',
-    message: 'New screen added to "Pizza Place"',
-    timestamp: '5 hours ago',
-    icon: 'i-lucide-monitor',
-  },
-]
+// const recentActivity = [
+//   {
+//     id: 1,
+//     type: 'business_created',
+//     message: 'New business "Coffee Shop" created',
+//     timestamp: '2 hours ago',
+//     icon: 'i-lucide-building-2',
+//   },
+//   {
+//     id: 2,
+//     type: 'user_invited',
+//     message: 'New user invited to "Restaurant Chain"',
+//     timestamp: '4 hours ago',
+//     icon: 'i-lucide-user-plus',
+//   },
+//   {
+//     id: 3,
+//     type: 'screen_added',
+//     message: 'New screen added to "Pizza Place"',
+//     timestamp: '5 hours ago',
+//     icon: 'i-lucide-monitor',
+//   },
+// ]
 
 useHead({
   title: 'Admin Dashboard',
@@ -119,7 +119,7 @@ useHead({
           <h2 class="text-base font-semibold">
             Recent Activity
           </h2>
-          <UButton
+          <!-- <UButton
             to="/admin/activity"
             color="primary"
             variant="ghost"
@@ -127,17 +127,17 @@ useHead({
             size="sm"
           >
             View all
-          </UButton>
+          </UButton> -->
         </div>
       </template>
 
-      <UTimeline
+      <!-- <UTimeline
         :items="recentActivity.map(item => ({
           icon: { name: item.icon },
           title: item.message,
           description: item.timestamp,
         }))"
-      />
+      /> -->
     </UCard>
   </div>
 </template>

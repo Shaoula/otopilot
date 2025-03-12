@@ -1,5 +1,5 @@
 <script setup lang="ts">
-// const { t } = useI18n()
+import type { IBusiness } from '~~/types'
 
 definePageMeta({
   layout: 'admin',
@@ -8,9 +8,23 @@ definePageMeta({
 
 const { id } = useRoute().params as { id: string }
 
-const { getBusiness } = useBusiness()
+if (!id)
+  navigateTo('/admin/businesses')
 
-const business = getBusiness(id)
+const { getBusiness, refetchBusiness } = useBusiness()
+
+const business = ref<IBusiness | undefined>(undefined)
+
+business.value = getBusiness(id)
+
+const refresh = async () => {
+  const refreshedBusiness = await refetchBusiness(id)
+
+  if (!refreshedBusiness)
+    return
+
+  business.value = refreshedBusiness
+}
 </script>
 
 <template>
@@ -20,7 +34,7 @@ const business = getBusiness(id)
     </PageTitle>
 
     <template v-if="business">
-      <BusinessCard :business="business" />
+      <BusinessCard :data="business" @change="refresh" />
     </template>
   </div>
 </template>

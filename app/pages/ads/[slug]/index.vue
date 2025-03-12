@@ -10,7 +10,7 @@ if (!slug) {
     })
 }
 
-const { getAd } = useAds()
+const { getAd } = useAd()
 
 const ad = computed(() => getAd(slug as string))
 
@@ -22,14 +22,14 @@ const showGalleryModal = ref(false)
 
 // Navigation functions for gallery
 const nextImage = () => {
-    if (!ad.value?.images) return
-    currentImageIndex.value = (currentImageIndex.value + 1) % ad.value.images.length
+    if (!ad.value?.visuals) return
+    currentImageIndex.value = (currentImageIndex.value + 1) % ad.value.visuals.length
 }
 
 const previousImage = () => {
-    if (!ad.value?.images) return
+    if (!ad.value?.visuals) return
     currentImageIndex.value = currentImageIndex.value === 0 
-        ? ad.value.images.length - 1 
+        ? ad.value.visuals.length - 1 
         : currentImageIndex.value - 1
 }
 
@@ -49,9 +49,8 @@ const formatDate = (date: string) => {
     })
 }
 
-// 
+// Check if ad is loaded
 watch(ad, () => {
-    console.log(ad.value)
     if (!ad.value) {
         throw createError({
             statusCode: 404,
@@ -59,7 +58,7 @@ watch(ad, () => {
             message: 'İlan bulunamadı',
         })
     }
-}, { immediate: true, once: true })
+}, { once: true })
 </script>
 
 <template>
@@ -78,12 +77,12 @@ watch(ad, () => {
             />
 
             <!-- Ad Header -->
-            <div class="flex flex-col lg:flex-row justify-between mb-6">
+            <div class="flex flex-col lg:flex-row justify-between mb-6 gap-8">
                 <!-- Ad Title and Date -->
                 <div class="flex flex-col gap-2">
                     <div class="flex gap-2">
                         <h1 class="text-3xl font-bold">{{ ad.title }}</h1>
-                        <p class="text-sm text-neutral-500">{{ formatDate(ad.createdAt.toString()) }}</p>
+                        <p class="text-sm text-neutral-500">{{ formatDate(ad.createdAt?.toString() ?? '') }}</p>
                     </div>
                     <div>
                         <p class="text-sm text-neutral-500 line-clamp-2">{{ ad.description }}</p>
@@ -133,7 +132,7 @@ watch(ad, () => {
                 </div>
 
                 <!-- Ad Actions -->
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2 shrink-0">
                     <!-- Share -->
                     <div class="flex items-center gap-2">
                         <UButton
@@ -146,34 +145,36 @@ watch(ad, () => {
 
                     <!-- Price -->
                     <div class="flex items-center gap-2">
-                        <h2 class="text-3xl font-bold">{{ ad.price ? formatPrice(ad.price) : '___' }}</h2>
+                        <h2 class="text-3xl font-bold">{{ formatPrice(ad.price ?? 0) }}</h2>
                     </div>
                 </div>
             </div>
 
             <!-- Ad Images (Gallery) -->
-             <div class="flex flex-col lg:flex-row gap-8">
+             <!-- <div class="flex flex-col lg:flex-row gap-8">
                 <div class="lg:col-span-2 space-y-6">
-                    <!-- Image Gallery -->
                     <UCard class="overflow-hidden">
                         <div class="relative">
                             <NuxtImg
-                                :src="ad.images[currentImageIndex]"
+                                v-if="ad.visuals?.[currentImageIndex]"
+                                :src="ad.visuals?.[currentImageIndex]"
                                 class="w-full h-[400px] object-cover cursor-pointer"
                                 @click="showGalleryModal = true"
                             />
+                            <div v-else class="w-full h-[400px] bg-neutral-100 flex items-center justify-center dark:bg-neutral-800">
+                                <p class="text-neutral-500 dark:text-neutral-400">No image</p>
+                            </div>
                         </div>
                     </UCard>
                 </div>
                 <div class="space-y-6">
-                    <!-- Vehicle Details -->
                     <UCard>
                         <template #header>
                             <h2 class="text-xl font-semibold">Araç Detayları</h2>
                         </template>
                     </UCard>
                 </div>
-             </div>
+             </div> -->
 
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -183,14 +184,19 @@ watch(ad, () => {
                     <UCard class="overflow-hidden">
                         <div class="relative">
                             <NuxtImg
-                                v-if="ad.images?.[currentImageIndex]"
-                                :src="ad.images[currentImageIndex]"
+                                v-if="ad.visuals?.[currentImageIndex]"
+                                :src="ad.visuals?.[currentImageIndex]"
                                 class="w-full h-[400px] object-cover cursor-pointer"
                                 @click="showGalleryModal = true"
                             />
+                            <div v-else class="w-full h-[400px] bg-neutral-100 flex items-center justify-center dark:bg-neutral-800">
+                                <p class="text-neutral-500 dark:text-neutral-400">
+                                    <Icon name="i-lucide-image" class="w-10 h-10" />
+                                </p>
+                            </div>
                             <!-- Gallery Navigation -->
                             <div
-                                v-if="ad.images?.length > 1"
+                                v-if="ad.visuals?.length && ad.visuals?.length > 1"
                             class="absolute inset-0 flex items-center justify-between p-4">
                                 <UButton
                                     color="primary"
@@ -209,7 +215,7 @@ watch(ad, () => {
                         <!-- Thumbnail Strip -->
                         <div class="flex gap-2 p-4 overflow-x-auto">
                             <div
-                                v-for="(image, index) in ad.images"
+                                v-for="(image, index) in ad.visuals"
                                 :key="index"
                                 class="shrink-0"
                             >
@@ -297,8 +303,8 @@ watch(ad, () => {
                 </template>
                 <div class="relative">
                     <NuxtImg
-                        v-if="ad?.images?.[currentImageIndex]"
-                        :src="ad.images[currentImageIndex]"
+                        v-if="ad?.visuals?.[currentImageIndex]"
+                        :src="ad.visuals?.[currentImageIndex]"
                         class="w-full h-[600px] object-contain"
                     />
                     <div class="absolute inset-0 flex items-center justify-between p-4">
@@ -318,7 +324,7 @@ watch(ad, () => {
                 </div>
                 <template #footer>
                     <p class="text-center text-sm text-gray-500">
-                        {{ currentImageIndex + 1 }} / {{ ad?.images?.length }}
+                        {{ currentImageIndex + 1 }} / {{ ad?.visuals?.length }}
                     </p>
                 </template>
             </UCard>

@@ -16,13 +16,13 @@ export default defineTask({
       },
       {
         name: 'Nebi Özel',
-        email: 'nebi@shaoula.com',
+        email: 'nebizl08@gmail.com',
         emailVerified: true,
         role: 'admin',
       },
       {
         name: 'Süleyman Taş',
-        email: 'suleyman@shaoula.com',
+        email: 'stas99397@gmail.com',
         emailVerified: true,
         role: 'admin',
       },

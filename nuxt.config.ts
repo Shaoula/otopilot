@@ -30,6 +30,7 @@ export default defineNuxtConfig({
         redirectGuestTo: '/auth/login',
       },
     },
+    allowedDomains: process.env.ALLOWED_DOMAINS?.split(',') || ['localhost:3000']
   },
 
   css: ['~/assets/css/main.css'],
@@ -96,6 +97,11 @@ export default defineNuxtConfig({
       cookieKey: 'i18n_redirected',
       redirectOn: 'root',
     },
+  },
+
+  piniaPluginPersistedstate: {
+    storage: 'sessionStorage',
+    key: 'sh-%id',
   },
 
   compatibilityDate: '2024-11-27'

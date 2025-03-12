@@ -25,7 +25,7 @@ async function updatePersonalInfo() {
     toast.add({
       title: 'Hata',
       description: 'Lütfen daha sonra tekrar deneyiniz.',
-      icon: 'i-solar-close-circle-linear',
+      icon: 'i-lucide-circle-x',
       color: 'error',
     })
   }
@@ -34,7 +34,7 @@ async function updatePersonalInfo() {
     toast.add({
       title: 'Başarılı',
       description: 'Değişiklikler kaydedildi.',
-      icon: 'i-solar-check-circle-linear',
+      icon: 'i-lucide-circle-check',
       color: 'success',
     })
   }
