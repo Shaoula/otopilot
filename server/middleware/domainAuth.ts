@@ -23,6 +23,8 @@ export default defineEventHandler(async (event) => {
 
   try {
     const domain = new URL(origin).hostname
+    console.log('domain', domain)
+    console.log('allowedDomains', allowedDomains)
     if (!allowedDomains.includes(domain)) {
       throw createError({
         statusCode: 403,
